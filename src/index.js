@@ -3,11 +3,17 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-
+import { Provider } from 'react-redux';
+import configureAppStore from './store/configureStore';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './assets/css/style.css';
+import './assets/css/toastr.min.css';
+import 'bootstrap/dist/js/bootstrap';
+const store = configureAppStore();
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+  <Provider store={store}>   <App /> </Provider>
   </React.StrictMode>
 );
 

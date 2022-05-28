@@ -1,24 +1,31 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import { Login } from './components/Admin/Login';
+import FreeAuthRoute from "./routes/FreeAuthRoute";
+import {ProtectedRoute} from "./routes/ProtectedRoute";
+import Layouts from './conatainers/Layouts';
+import Dashboard from './components/Admin/Dashboard';
+import Users from './components/Admin/Users/Index';
+import AddUser from './components/Admin/Users/AddUser';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route
+} from "react-router-dom";
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+return (
+    <>
+      <Router>
+        <Routes>
+          <Route exact path="/login" element={ <FreeAuthRoute><Login /></FreeAuthRoute> } />
+          <Route exact path="/dashboard" element={  <ProtectedRoute><Layouts><Dashboard /></Layouts></ProtectedRoute> } />
+          <Route exact path="/users" element={  <ProtectedRoute><Layouts><Users /></Layouts></ProtectedRoute> } />
+          <Route exact path="/add-user" element={  <ProtectedRoute><Layouts><AddUser /></Layouts></ProtectedRoute> } />
+         </Routes>
+      </Router>
+    </>
   );
 }
 
